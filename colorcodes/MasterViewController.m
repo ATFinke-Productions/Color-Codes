@@ -38,7 +38,9 @@
     NSArray *items = @[shareString,iconImage];
     
     UIActivityViewController *share = [[UIActivityViewController alloc]initWithActivityItems:items applicationActivities:nil];
-    share.popoverPresentationController.barButtonItem = sender;
+    if ([[UIDevice currentDevice] systemVersion].doubleValue >= 8.0) {
+        share.popoverPresentationController.sourceView = sender;
+    }
     [self presentViewController:share animated:YES completion:nil];
 }
 
@@ -46,7 +48,9 @@
     if (indexPath.section > 2) {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[cell.textLabel.text] applicationActivities:nil];
-        vc.popoverPresentationController.sourceView = cell;
+        if ([[UIDevice currentDevice] systemVersion].doubleValue >= 8.0) {
+            vc.popoverPresentationController.sourceView = cell;
+        }
         [self presentViewController:vc animated:true completion:nil];
     }
 

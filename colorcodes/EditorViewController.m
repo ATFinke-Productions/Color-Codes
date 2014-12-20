@@ -45,7 +45,9 @@
 
 - (void) shareColor:(id)sender {
     UIActivityViewController *vc = [[UIActivityViewController alloc] initWithActivityItems:@[rgbLabel.text] applicationActivities:nil];
-    vc.popoverPresentationController.barButtonItem = sender;
+    if ([[UIDevice currentDevice] systemVersion].doubleValue >= 8.0) {
+        vc.popoverPresentationController.sourceView = sender;
+    }
     [self presentViewController:vc animated:true completion:nil];
 }
 

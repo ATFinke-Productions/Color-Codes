@@ -45,7 +45,7 @@
            //     [self showAppStore];
             }
             else if (indexPath.row == 1) {
-                [self emailSupport];
+               // [self emailSupport];
             }
             break;
         case 1:
